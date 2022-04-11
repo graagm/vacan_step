@@ -38,8 +38,8 @@ def vacanci_values(request, cat=None):
 def comp_values(request: WSGIRequest, comp_id=None):
     try:
         c_obj = Company.objects.get(pk=comp_id)
-    except KeyError:
-        raise Http404
+    except Company.DoesNotExist:
+        raise Http404("DJANGO STEPIK VACANS 404 test")
     companies = Company.objects.get(pk=comp_id)
     vacanci = Vacancy.objects.all().filter(company__pk=comp_id)
     comp_vac_count = vacanci.count()
@@ -48,5 +48,5 @@ def comp_values(request: WSGIRequest, comp_id=None):
 
 
 def vacanci_single(request, single_vac=1):
-    vacanci_from_single = Vacancy.objects.get(pk=1)
+    vacanci_from_single = Vacancy.objects.get(pk=single_vac)
     return render(request, 'vacancyfromstep/vacancy.html', {'vacanci_from_single': vacanci_from_single})

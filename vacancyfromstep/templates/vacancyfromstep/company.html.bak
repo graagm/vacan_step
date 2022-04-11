@@ -22,7 +22,7 @@
         <img src="{{ companies.logo }}" width="130" height="80" alt="">
       </div>
       <h1 class="h1 text-center mx-auto mt-0 pt-1" style="font-size: 70px;"><strong>{{ companies.name }}</strong></h1>
-      <p class="text-center pt-1">{{ companies.description }}, {{ companies.location }}, 5 вакансий</p>	  
+      <p class="text-center pt-1">{{ companies.description }}, {{ companies.location }}, {{ comp_vac_count }} вакансий</p>	  
 	  {% for vac in vacanci %}
       <div class="row mt-5">
         <div class="col-12 col-lg-8 offset-lg-2 m-auto">
