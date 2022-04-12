@@ -8,11 +8,22 @@
 	  <li class="nav-item">
 		<a class="nav-link" href="/vacancies">вакансии</a>
 	  </li>
-
+	  	  <li class="nav-item">
+		<a class="nav-link" href="/add/vacancie">добавить вакансию</a>
+	  </li>
+	  <li class="nav-item">
+		<a class="nav-link" href="/add/company">добавить компанию</a>
+	  </li>
 	</ul>
 	<ul class="navbar-nav col-2 justify-content-end">
 	  <li class="nav-item active">
-		<a href="admin" class="nav-link font-weight-bold">вход</a>
+		<a href="/accounts/signup" class="nav-link font-weight-bold">регистрация</a>
+	  </li>
+	  <li class="nav-item active">
+		<a href="/accounts/login" class="nav-link font-weight-bold">вход</a>
+	  </li>
+	  <li class="nav-item active">
+		<a href="/admin" class="nav-link font-weight-bold">админ</a>
 	  </li>
 	</ul>
   </div>

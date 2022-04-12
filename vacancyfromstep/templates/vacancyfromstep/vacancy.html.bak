@@ -21,15 +21,15 @@
       </div>
       <div class="col-12 col-lg-8">
         <section class="pl-3">
-          <a href="/vacancies/22"><img src="{{ vacanci_from_single.p }}" width="130" height="80" alt=""></a>
+          <a href="/vacancies/{{ company_id.pk }}"><img src="{{ vacanci_from_single.p }}" width="130" height="80" alt=""></a>
           <div class="d-flex align-items-baseline align-content-baseline">
             <h1 class="h2 mt-4 font-weight-bold" >{{ vacanci_from_single.title }}</h1>
             <p class="m-0 pl-3">{{ vacanci_from_single.salary_min }} – {{ vacanci_from_single.salary_max}} Р</p>
           </div>
           <p class="mt-2">{{ vacanci_from_single.skills }}</p>
-          <p class="text-muted mb-4">{{ vacanci_from_single.company.name}} ({{ vacanci_from_single.company.employee_count}} человек) , {{ vacanci_from_single.company.location}} или удаленно</p>
+          <p class="text-muted mb-4"><a href="/companies/{{ single_vac}}"> {{ vacanci_from_single.company.name}}</a> ({{ vacanci_from_single.company.employee_count}} человек) , {{ vacanci_from_single.company.location}} или удаленно</p>
           <div style="line-height: 1.8;">
-          {{ vacanci_from_single.description}} 
+          {{ vacanci_from_single.description }} 
           </div>
           <form action="/echo" class="card mt-4 mb-3" enctype="multipart/form-data">
             <div class="card-body mx-3">

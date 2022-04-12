@@ -2,6 +2,8 @@ from django.shortcuts import render
 from django.http import Http404
 from django.core.handlers.wsgi import WSGIRequest
 from .models import Company, Specialty, Vacancy
+from .forms import Company_forms, Specialty_forms, Vacancy_forms
+from django.views.generic.edit import CreateView
 
 
 # Create your views here.
@@ -48,5 +50,30 @@ def comp_values(request: WSGIRequest, comp_id=None):
 
 
 def vacanci_single(request, single_vac=1):
-    vacanci_from_single = Vacancy.objects.get(pk=1)
-    return render(request, 'vacancyfromstep/vacancy.html', {'vacanci_from_single': vacanci_from_single})
+    vacanci_from_single = Vacancy.objects.get(pk=single_vac)
+    company_id = vacanci_from_single.company
+    return render(request, 'vacancyfromstep/vacancy.html', {'vacanci_from_single': vacanci_from_single, 'single_vac': single_vac, 'company_id': company_id})
+
+
+class VacancyCreateView(CreateView):
+       template_name = 'new_vacancy.html'
+       form_class = Vacancy_forms
+       success_url =  '/'
+
+
+       def get_context_data(self, **kwargs):
+           context = super().get_context_data(**kwargs)
+           context['Vacancy'] = Vacancy.objects.all()
+           return context
+
+
+class CompanyCreateView(CreateView):
+       template_name = 'new_company.html'
+       form_class = Company_forms
+       success_url =  '/'
+
+
+       def get_context_data(self, **kwargs):
+           context = super().get_context_data(**kwargs)
+           context['Company'] = Company.objects.all()
+           return context

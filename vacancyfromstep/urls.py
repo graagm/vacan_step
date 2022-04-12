@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, re_path
-from vacancyfromstep.views import main_index, vacanci_values, comp_values, vacanci_single
+from vacancyfromstep.views import main_index, vacanci_values, comp_values, vacanci_single, VacancyCreateView, CompanyCreateView
 
 urlpatterns = [
    path('', main_index, name='main_index'),
    path('vacancies/<int:single_vac>', vacanci_single, name='vacanci_single'),
+   path('add/vacancie', VacancyCreateView.as_view(), name = 'add_vacancie'),
+   path('add/company', CompanyCreateView.as_view(), name = 'add_company'),
    re_path('vacancies/company/?(?P<comp_id>\d{1,3})?', comp_values, name='vac_comp_values'),
    re_path('companies/?(?P<comp_id>\d{1,3})?', comp_values, name='comp_values'),
    re_path('vacancies/?(?P<cat>\w{6,10})?', vacanci_values, name='vacanci_values'),
