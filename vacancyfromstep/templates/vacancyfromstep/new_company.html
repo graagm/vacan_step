@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="ru">
-
+{% load crispy_forms_tags %}
 <head>
   <meta charset="UTF-8">
   <title>Вакансии | Джуманджи</title>
@@ -17,7 +17,8 @@
 	   {% if user.is_authenticated %}
 	   <form method="post">
        {%csrf_token%}
-       {{form.as_p}}
+       {{form|crispy}}
+	   <br>
        <input type="submit" value="Добавить новую компанию">
        </form>
 	   {% else %}

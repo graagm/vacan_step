@@ -1,9 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import Http404
 from django.core.handlers.wsgi import WSGIRequest
-from .models import Company, Specialty, Vacancy
-from .forms import Company_forms, Specialty_forms, Vacancy_forms
-from django.views.generic.edit import CreateView
+from .models import Company, Specialty, Vacancy, Rezume
+from .forms import Company_forms, Specialty_forms, Vacancy_forms, Rezume_forms
+from django.views.generic.edit import CreateView, UpdateView
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Submit
 
 
 # Create your views here.
@@ -77,3 +79,44 @@ class CompanyCreateView(CreateView):
            context = super().get_context_data(**kwargs)
            context['Company'] = Company.objects.all()
            return context
+
+
+class RezumeCreateView(CreateView):
+       template_name = 'vacancyfromstep/new_rezume.html'
+       form_class = Rezume_forms
+       success_url =  '/'
+       model = Rezume
+       
+       
+       # def dispatch(self, request, users_id=None, *args, **kwargs):
+            # trom = Rezume.objects.all().filter(user__pk=users_id)
+            # kwargs.update({'trom': trom, 'users_id': users_id}) 
+            # return super().dispatch(request, *args, **kwargs)
+       
+       
+       def form_valid(self, form):
+           rezume_f = form.save(commit=False)
+           rezume_f.user = self.request.user
+           rezume_f.save()
+           return super().form_valid(form)
+
+
+class RezumeUpdateView(UpdateView):
+       form_class = Rezume_forms
+       template_name = 'vacancyfromstep/upd_rezume.html'
+       success_url =  '/'
+       model = Rezume
+       
+       def get_object(self, queryset=None):
+           obj = Rezume.objects.get(user=self.request.user)
+           return obj
+
+
+def Rezume_check(request, user_pk):
+    rezum_trom = Rezume.objects.all().filter(user__pk=user_pk)
+    if rezum_trom:
+        return redirect('upd_rezume')
+    else:
+        return redirect('add_rezume')
+
+       

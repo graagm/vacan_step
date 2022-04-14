@@ -14,13 +14,16 @@
 	  <li class="nav-item">
 		<a class="nav-link" href="/add/company">добавить компанию</a>
 	  </li>
+	  <li class="nav-item">
+		<a class="nav-link" href="/add/rezume{% if user.is_authenticated %}/{{request.user.pk}}{% endif %} ">добавить резюме</a>
+	  </li>
 	</ul>
 	<ul class="navbar-nav col-2 justify-content-end">
 	  <li class="nav-item active">
 		<a href="/signup" class="nav-link font-weight-bold">регистрация</a>
 	  </li>
 	  <li class="nav-item active">
-		<a href="/accounts/login" class="nav-link font-weight-bold">вход</a>
+		<a href="/login" class="nav-link font-weight-bold">вход</a>
 	  </li>
 	  <li class="nav-item active">
 		<a href="/admin" class="nav-link font-weight-bold">админ</a>
@@ -28,3 +31,17 @@
 	</ul>
   </div>
 </nav>
+	{% if user.is_authenticated %}
+<div class="row">
+    <div class="col-12 col-md-6">
+	   <p></p>
+      <p>Hi {{ user.username }}!</p>
+      <p><a href="{% url 'logout' %}">Log out</a>&nbsp &nbsp &nbsp<a href="/add/rezume/{{request.user.pk}}">Мои резюме</a></p>
+	  <p>{% if request.path == '/rezume/edit' %}Пользователь имеет возможность добавить только одно резюме. Вы в режиме правки.{% endif %}</p>
+    </div>
+</div>
+	{% endif %} 
+<div>
+   <input type='button' value="Previous Page" onClick="javascript:history.go(-1);">
+   <p></p>
+</div>

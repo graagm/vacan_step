@@ -14,14 +14,15 @@
   </header>
   <main class="container mt-3">
     <section>
-	  {% if user.is_authenticated %}
-       <form method="post">
+	   {% if user.is_authenticated %}
+	   <form method="post">
        {%csrf_token%}
        {{form|crispy}}
-       <input type="submit" value="Добавить новую вакансию">
+	   <br>
+       <input type="submit" value="Изменить резюме">
        </form>
 	   {% else %}
-	   <a href="/signup" class="nav-link font-weight-bold">регистрация</a>
+       <a href="/signup" class="nav-link font-weight-bold">регистрация</a>
 	   {% endif %}
     </section>
   </main>

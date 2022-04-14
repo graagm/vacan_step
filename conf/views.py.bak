@@ -9,10 +9,7 @@ from django.shortcuts import render
 
 class MyLoginView(LoginView):
    success_url = '/'
-   
-   def form_invalid(self, form):
-    return render('/')
-
+   template_name = 'registration/login.html'
 
 
 class MySignupView(CreateView):

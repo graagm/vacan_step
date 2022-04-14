@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Company, Specialty, Vacancy
+from .models import Company, Specialty, Vacancy, User, Rezume
 
 
 class CompanyAdmin(admin.ModelAdmin):
@@ -16,6 +16,12 @@ class VacancyAdmin(admin.ModelAdmin):
     list_display = ('title', 'specialty', 'company', 'skills', 'description', 'salary_min', 'salary_max', 'published_at')
 
 
+class RezumeAdmin(admin.ModelAdmin):
+    list_display = ('user', 'name', 'surname', 'status', 'salary', 'specialty', 'grade', 'education', 'experience', 'portfolio',  'published_at')
+
+
 admin.site.register(Company, CompanyAdmin)
 admin.site.register(Specialty, SpecialtyAdmin)
 admin.site.register(Vacancy, VacancyAdmin)
+admin.site.register(Rezume, RezumeAdmin)
+
