@@ -15,9 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import  MySignupView, MyLoginView
+from .views import MySignupView, MyLoginView
 from django.contrib.auth.views import LogoutView
-from django.contrib.auth  import urls
 
 
 urlpatterns = [

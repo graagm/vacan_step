@@ -13,19 +13,23 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.urls import path, re_path
-from vacancyfromstep.views import main_index, vacanci_values, comp_values, vacanci_single, VacancyCreateView, CompanyCreateView, RezumeCreateView, Rezume_check, RezumeUpdateView
+from vacancyfromstep.views import main_index, vacanci_values
+from vacancyfromstep.views import comp_values, vacanci_single, VacancyCreateView
+from vacancyfromstep.views import CompanyCreateView, RezumeCreateView, Rezume_check, RezumeUpdateView, Search, Search_quick
+
 
 urlpatterns = [
    path('', main_index, name='main_index'),
    path('vacancies/<int:single_vac>', vacanci_single, name='vacanci_single'),
-   path('add/vacancie', VacancyCreateView.as_view(), name = 'add_vacancie'),
-   path('add/company', CompanyCreateView.as_view(), name = 'add_company'),
-   path('add/rezume/<int:user_pk>', Rezume_check, name = 'check_rezume'),
-   path('add/rezume/', RezumeCreateView.as_view(), name = 'add_rezume'),
-   path('rezume/edit', RezumeUpdateView.as_view(), name = 'upd_rezume'),
+   path('add/vacancie', VacancyCreateView.as_view(), name='add_vacancie'),
+   path('add/company', CompanyCreateView.as_view(), name='add_company'),
+   path('add/rezume/<int:user_pk>', Rezume_check, name='check_rezume'),
+   path('add/rezume/', RezumeCreateView.as_view(), name='add_rezume'),
+   path('rezume/edit', RezumeUpdateView.as_view(), name='upd_rezume'),
+   path('search/', Search, name='search'),
+   path('search/<slug:search_req>', Search_quick, name='search_quick'),
    re_path('vacancies/company/?(?P<comp_id>\d{1,3})?', comp_values, name='vac_comp_values'),
    re_path('companies/?(?P<comp_id>\d{1,3})?', comp_values, name='comp_values'),
-   re_path('vacancies/?(?P<cat>\w{6,10})?', vacanci_values, name='vacanci_values'),
+   re_path('vacancies/?(?P<cat>\w{6,15})?', vacanci_values, name='vacanci_values'),
 ]
