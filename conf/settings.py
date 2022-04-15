@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-mpa3uix9*x=tj=drwxhf4zqnsrqjr_gxrl17ld3b#(9ykc=dj0
 DEBUG = False
 
 ALLOWED_HOSTS = ['*']
-STATIC_ROOT = 'static'
+STATIC_ROOT = BASE_DIR / 'static'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/login'
 
