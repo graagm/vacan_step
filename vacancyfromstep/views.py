@@ -86,7 +86,7 @@ class RezumeCreateView(CreateView):
     form_class = Rezume_forms
     success_url = '/'
     model = Rezume
-   
+
     def form_valid(self, form):
         rezume_f = form.save(commit=False)
         rezume_f.user = self.request.user
@@ -97,9 +97,9 @@ class RezumeCreateView(CreateView):
 class RezumeUpdateView(UpdateView):
     form_class = Rezume_forms
     template_name = 'vacancyfromstep/upd_rezume.html'
-    success_url =  '/'
+    success_url = '/'
     model = Rezume
-       
+  
     def get_object(self, queryset=None):
         obj = Rezume.objects.get(user=self.request.user)
         return obj
@@ -129,4 +129,5 @@ def Search_quick(request, search_req):
     if count_vac == 0:
         return redirect('/vacancies/нет_вакансий')
     return render(request, 'vacancyfromstep/search.html', {'vacanc_rezult': vacanc_rezult, 'count_vac': count_vac})
+    
 

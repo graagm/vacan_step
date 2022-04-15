@@ -16,7 +16,8 @@ Including another URLconf
 from django.urls import path, re_path
 from vacancyfromstep.views import main_index, vacanci_values
 from vacancyfromstep.views import comp_values, vacanci_single, VacancyCreateView
-from vacancyfromstep.views import CompanyCreateView, RezumeCreateView, Rezume_check, RezumeUpdateView, Search, Search_quick
+from vacancyfromstep.views import CompanyCreateView, RezumeCreateView, Rezume_check
+from vacancyfromstep.views import RezumeUpdateView, Search, Search_quick
 
 
 urlpatterns = [
